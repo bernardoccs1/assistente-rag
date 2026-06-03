@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: assistente_rag_api
+    ports:
+      - "8000:8000"
+    volumes:
+    # Espelha o código local com o container
+      - .:/app
+    # Garante que o banco (ChromaDB) gerado localmente seja lido
+      - ./data/processed:/app/data/processed
+    env_file:
+      - .env
+    restart: always
