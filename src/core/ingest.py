@@ -1,8 +1,9 @@
 import os
+import fitz
 # Define User Agent Global a fim de evitar bloqueios do WebBaseLoader
 os.environ["USER_AGENT"] = "AssistenteRAG-DevOps/1.0"
 
-from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader, WebBaseLoader
+from langchain_community.document_loaders import PyMuPDFLoader, DirectoryLoader, WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings  # Local, gratuito e infalível
 from langchain_chroma import Chroma
@@ -25,7 +26,12 @@ def ingest_docs():
     web_docs = web_loader.load() # Carrega o HTML transformando em chunks de texto
 
     # Extração de dados de PDFs locais = vindos da pasta data/raw/
-    pdf_loader = DirectoryLoader(RAW_DATA_DIR, glob="./*.pdf", loader_cls=PyPDFLoader)
+    pdf_loader = DirectoryLoader(
+        RAW_DATA_DIR,
+        glob="**/*.pdf",
+        loader_cls=PyMuPDFLoader
+    )
+        
     pdf_docs = pdf_loader.load()
 
     all_docs = web_docs + pdf_docs # Combina Web e Pdf em uma lista
@@ -36,8 +42,8 @@ def ingest_docs():
     
     # Chunking: Divide textos longos em pedaços menores (chunks) para se adequar a LLM
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,  # Máx de caracteres por pedaço de texto
-        chunk_overlap=150, # Manutenção de caracteres de sobreposição a fim de evitar perda de contexto
+        chunk_size=500,  # Máx de caracteres por pedaço de texto
+        chunk_overlap=100, # Manutenção de caracteres de sobreposição a fim de evitar perda de contexto
     )
        
     chunks = text_splitter.split_documents(all_docs)
