@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --default-timeout=1000 --no-cache-dir --use-deprecated=legacy-resolver -r requirements.txt
+RUN pip install --default-timeout=1000 --no-cache-dir  -r requirements.txt
 
 RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
-
+ 
 COPY . .
 
 ENV PORT 8000
