@@ -10,7 +10,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 # Caminho onde a DB Chroma foi salva pelo ingest.py
-PROCESSED_DATA_DIR = "data/processed/" 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+RAW_DATA_DIR = os.path.join(BASE_DIR, "data", "raw")
+PROCESSED_DATA_DIR = os.path.join(BASE_DIR, "data", "processed")
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)

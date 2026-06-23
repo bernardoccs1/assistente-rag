@@ -9,8 +9,9 @@ from langchain_huggingface import HuggingFaceEmbeddings  # Local, gratuito e inf
 from langchain_chroma import Chroma
 
 # Caminhos onde ficam os arquivos do projeto
-RAW_DATA_DIR = "data/raw/"
-PROCESSED_DATA_DIR = "data/processed/"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+RAW_DATA_DIR = os.path.join(BASE_DIR, "data", "raw")
+PROCESSED_DATA_DIR = os.path.join(BASE_DIR, "data", "processed")
  
 def ingest_docs():
     print("Iniciando a indexação de docs de Infraestrutura...")
