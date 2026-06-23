@@ -10,7 +10,22 @@ services:
     # Espelha o código local com o container
       - .:/app
     # Garante que o banco (ChromaDB) gerado localmente seja lido
-      - ./data/processed:/app/data/processed
+      - ./data:/app/data
     env_file:
       - .env
     restart: always
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: .
+    container_name: assistente_rag_frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - api
+    restart: always
+    command: streamlit run src/app.py --server.address 0.0.0.0 --server.port 8501
