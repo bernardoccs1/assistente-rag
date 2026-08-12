@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .env
 data/processed/
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.exe
