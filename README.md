@@ -76,6 +76,7 @@ Para rodar os testes localmente:
 Bash
 
 pytest
+
    Próximos Passos (Roadmap de MLOps & Infra)
 [ ] Implementar tracing e observabilidade de LLMs utilizando LangSmith / Arize Phoenix.
 
