@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+
 from src.core.rag_engine import get_infra_assistant_chain
 
 # Criação do roteador de rotas
