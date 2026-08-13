@@ -36,19 +36,23 @@ Conteinerização & Ambiente: Docker / Docker Compose
 Qualidade & CI/CD: Pytest / Ruff / GitHub Actions
 
   Como Executar o Projeto
+  
 Pré-requisitos:
+
 Docker e Docker Compose instalados.
 
 Uma chave de API do Google Gemini (GOOGLE_API_KEY).
 
 1. Clonar o repositório
+   
 Bash
 git clone [https://github.com/bernardoccs1/assistente-rag.git](https://github.com/bernardoccs1/assistente-rag.git)
 cd assistente-rag
-2. Configurar Variáveis de Ambiente
+3. Configurar Variáveis de Ambiente
 Crie um arquivo .env na raiz do projeto com base no modelo:
 
 Snippet de código
+
 GOOGLE_API_KEY=sua_chave_api_aqui
 3. Rodar via Docker Compose
 Bash
@@ -58,6 +62,7 @@ A API estará acessível em: http://localhost:8000
 Documentação interativa Swagger: http://localhost:8000/docs
 
   Testes e CI/CD
+  
 O projeto conta com uma esteira automatizada de CI/CD via GitHub Actions (.github/workflows/ci.yml), garantindo:
 
 Análise estática de código e linting com Ruff.
@@ -69,6 +74,7 @@ Validação do build do container Docker.
 Para rodar os testes localmente:
 
 Bash
+
 pytest
    Próximos Passos (Roadmap de MLOps & Infra)
 [ ] Implementar tracing e observabilidade de LLMs utilizando LangSmith / Arize Phoenix.
