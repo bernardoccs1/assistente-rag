@@ -35,6 +35,11 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
         pytest --suppress-no-test-exit-code || true
+        
+    - name: Run Security Scan (Bandit)
+      run: |
+        pip install bandit
+        bandit -r src/
 
   docker-build:
     needs: lint-and-test
