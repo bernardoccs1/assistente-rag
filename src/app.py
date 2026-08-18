@@ -30,7 +30,7 @@ if prompt := st.chat_input("Ask your Docker related question."):
         try:
             API_url = "http://api:8000/perguntar"
             payload = {"texto": prompt}
-            response = requests.post(API_url, json=payload)
+            response = requests.post(API_url, json=payload, timeout= 60)
 
             if response.status_code == 200:
                 resultado = response.json()
