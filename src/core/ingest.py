@@ -1,8 +1,5 @@
 import os
 
-# Define User Agent Global a fim de evitar bloqueios do WebBaseLoader
-os.environ["USER_AGENT"] = "AssistenteRAG-DevOps/1.0"
-
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import (
     DirectoryLoader,
@@ -11,6 +8,9 @@ from langchain_community.document_loaders import (
 )
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+# Define User Agent Global a fim de evitar bloqueios do WebBaseLoader
+os.environ["USER_AGENT"] = "AssistenteRAG-DevOps/1.0"
 
 # Caminhos onde ficam os arquivos do projeto
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
