@@ -13,6 +13,8 @@ services:
       - ./data:/app/data
     env_file:
       - .env
+    environment:
+      RAG_API_KEY: ${RAG_API_KEY:?defina RAG_API_KEY no arquivo .env}
     restart: always
     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
@@ -25,6 +27,8 @@ services:
       - .:/app
     env_file:
       - .env
+    environment:
+      RAG_API_KEY: ${RAG_API_KEY:?defina RAG_API_KEY no arquivo .env}
     depends_on:
       - api
     restart: always
