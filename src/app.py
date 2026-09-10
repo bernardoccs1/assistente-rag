@@ -1,4 +1,5 @@
 import warnings
+import os
 
 import requests
 import streamlit as st
@@ -30,11 +31,12 @@ if prompt := st.chat_input("Ask your Docker related question."):
         try:
             API_url = "http://api:8000/perguntar"
             payload = {"texto": prompt}
-            response = requests.post(API_url, json=payload, timeout= 60)
+            headers = {"X-API-Key": os.getenv("RAG_API_KEY", "")}
+            response = requests.post(API_url, json=payload, headers=headers, timeout=60)
 
             if response.status_code == 200:
                 resultado = response.json()
-                texto_resposta = resultado.get("texto", "Erro ao recuperar chave 'texto'.")
+                texto_resposta = resultado.get("resposta", "Erro ao recuperar chave 'resposta'.")
                 st.markdown(texto_resposta)
                 st.session_state.messages.append({"role": "assistant", "content": texto_resposta})
             else:

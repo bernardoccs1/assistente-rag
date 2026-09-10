@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from loguru import logger
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
-from src.api.routes import router as rotas_do_assistente
+from src.api.routes import limiter, router as rotas_do_assistente
 
 # Configuração de Logs
 logger.add(
@@ -18,6 +20,8 @@ logger.add(
 load_dotenv()
 
 app = FastAPI(title="Assistente RAG de Infra")
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Log de inicialização da API
 logger.info("Iniciando a aplicação Assistente RAG de Infra...")
