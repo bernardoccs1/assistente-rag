@@ -47,8 +47,12 @@ def perguntar(
 
     except HTTPException:
         raise
-    except Exception:
-        logger.exception("Erro não tratado ao processar a pergunta")
-        raise HTTPException(
-            status_code=500, detail="Erro interno ao processar a consulta RAG."
+    except Exception as exc:
+        logger.exception(
+            "Erro não tratado ao processar a pergunta: {}",
+            type(exc).__name__,
         )
+        raise HTTPException(
+            status_code=500,
+            detail="Erro interno ao processar a consulta RAG.",
+        ) from exc
