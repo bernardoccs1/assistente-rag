@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
@@ -6,7 +7,8 @@ from loguru import logger
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from src.api.routes import limiter, router as rotas_do_assistente
+from src.api.routes import limiter
+from src.api.routes import router as rotas_do_assistente
 
 # Configuração de Logs
 logger.add(

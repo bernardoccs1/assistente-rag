@@ -1,5 +1,5 @@
-import warnings
 import os
+import warnings
 
 import requests
 import streamlit as st
