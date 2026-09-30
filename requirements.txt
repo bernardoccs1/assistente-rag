@@ -8,11 +8,11 @@ slowapi==0.1.9
 # IA, RAG & Vector Store
 langchain==1.0.7
 langchain-community==0.4.2
-langchain-core==1.4.0
+langchain-core==1.4.4
 langchain-chroma==1.1.0
 langchain-google-genai==4.2.3
 langchain-huggingface==1.2.2
-langchain-text-splitters==1.1.0
+langchain-text-splitters==1.1.2
 google-genai==1.75.0
 chromadb==1.5.9
 sentence-transformers==5.5.1
