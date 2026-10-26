@@ -18,7 +18,7 @@ chromadb==1.5.9
 sentence-transformers==5.5.1
 
 # Leitura de Documentos
-pypdf==6.12.1
+pypdf==6.21.2
 PyMuPDF==1.27.2.3
 
 # Observabilidade & Utilitários
